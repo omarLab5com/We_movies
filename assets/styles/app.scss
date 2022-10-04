@@ -1,0 +1,80 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+a {
+    text-decoration: none !important;
+}
+
+.ratings {
+    margin-right:10px;
+}
+
+.ratings i {
+    color:#cecece;
+    font-size:18px;
+    height: 50%;
+}
+
+.rating-color {
+    color:#3486fb !important;
+}
+
+.rating-color-y {
+    color:#fbc634 !important;
+}
+
+.media {
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.media-body {
+    text-align: left;
+    margin-left: 20px;
+    width: 100%;
+}
+
+.button-detail {
+    background-color:#3486fb !important;
+    border-radius: 25px;
+    width: 180px;
+    color: #fff;
+}
+
+.button-detail:focus, .button-detail:active {
+    color: #fff;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 50%);
+}
+
+.badge-secondary {
+    color: #fff;
+    background-color: #6c757d;
+}
+
+form-search-results-wrapper {
+    max-width: 480px;
+    max-height: 300px;
+}
+
+@media (min-width: 768px) {
+    .form-search-results-wrapper {
+        left: unset;
+    }
+}
+
+.form-search-results-wrapper {
+    border: 1px solid var(--doc-layout-border-color);
+    box-shadow: var(--doc-search-results-box-shadow);
+    left: -5px;
+    position: absolute;
+    width: 100%;
+    z-index: 9999;
+    background: var(--page-background);
+    border: 0;
+    border-radius: var(--border-radius-md);
+    display: none;
+    margin: 10px auto;
+    max-width: 640px;
+    padding: 0;
+    width: 100%;
+}

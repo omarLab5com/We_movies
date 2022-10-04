@@ -1,0 +1,21 @@
+{% for movie in movies %}
+    <div class="card card-body">
+        <a href="{{ path('app_show_movie', {id: movie.id}) }}">
+            <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
+                <div class="mr-2 mb-3 mb-lg-0">
+                    <img src="{{get_fully_image_url_movies_db(movie.poster_path, 'w45')}}" alt="">
+                </div>
+                <div class="media-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="">
+                            <span class="h6 text-muted">{{movie.title}}</span>
+                        </div>
+                    </div>
+                    <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                        <li class="list-inline-item text-muted">{{movie.release_date|date('Y')}}</li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endfor %}

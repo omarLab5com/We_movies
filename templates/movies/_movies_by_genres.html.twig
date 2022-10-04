@@ -1,0 +1,33 @@
+
+{% for movie in movies %}
+    <div class="card card-body mb-4">
+        <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row show-modal-detail" data-movie="{{movie.id}}">
+            <div class="mr-2 mb-3 mb-lg-0">
+                <img src="{{get_fully_image_url_movies_db(movie.poster_path, 'w154')}}" alt="">
+            </div>
+            <div class="media-body">
+                <div class="d-flex justify-content-between">
+                    <div class="">
+                        <span class="h2 text-muted">{{movie.title}}</span>
+                    </div>
+                    <div class="ratings d-flex">
+                        {% include 'elements/ratings.html.twig' with {'voteAverage': movie.vote_average}%}
+                        <div class="text-muted">({{movie.vote_count}} votes)</div>
+                    </div>
+                    <div></div>
+                </div>
+                <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                    <li class="list-inline-item text-muted">{{movie.release_date|date('Y')}}</li>
+                </ul>
+                <p class="mb-3">{{movie.overview|escape}}</p>
+            </div>
+        </div>
+        <div class="text-end">
+            <a class="btn button-detail" href="{{ path('app_show_movie', {id: movie.id}) }}">Lire le detail</a>
+        </div>
+    </div>
+{% else %}
+    <div class="card card-body mb-4">
+        <span class="h3">La liste est vide !</span>
+    </div>
+{% endfor %}

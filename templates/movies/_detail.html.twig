@@ -1,0 +1,38 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Detail</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            {% set videoUrl = get_url_video(video) %}
+            {% if videoUrl is empty %}
+                <div class ="row">
+                    <video width="700" height="400" controls>
+                      Error!
+                    </video>
+                </div>
+            {% else %}
+                <div class="d-flex align-items-center justify-content-center">
+                    <iframe width="700" height="400" src="{{videoUrl}}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                </div>
+            {% endif %}
+            <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
+                <div class="media-body">
+                    <p class="h2">{{movie.title}}</p>
+                    <div class="d-flex justify-content-between">
+                        <div class="">
+                            <span class="text-muted">Film : </span>{{movie.title}}
+                        </div>
+                        <div class="ratings d-flex">
+                            {% include 'elements/ratings.html.twig' with {'voteAverage': movie.vote_average, 'yellowStar': true}%}
+                            <div class="badge badge-secondary mx-2"> {{(movie.vote_average / 2)|round(1, 'ceil')}}</div>
+                            <div> pour {{movie.vote_count}} utilisateur(s)</div>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
