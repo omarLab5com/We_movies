@@ -6,20 +6,24 @@ The "WeMovies application" is a web application written in Symfony.
 Requirements
 ------------
 
-  * PHP 7.2.5 or higher;
+  * PHP 8.1 or higher;
 
-Assets
+Installing
 -----
 
-Puts the file with the routes in the proper location 
+Install dependencies Back
 ```bash
 $ cd we_movies/
+$ composer install
+```
+
+Puts the file with the routes in the proper location
+```bash
 $ php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
 ```
 
-Install dependencies front
+Install dependencies Front
 ```bash
-$ cd we_movies/
 $ npm install
 $ npm run dev
 ```
