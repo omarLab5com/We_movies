@@ -24,7 +24,6 @@ $(function() {
                     $("#showDetail").modal('show');
                 } else {
                     console.log('error');
-                    console.log(data);
                 }
             }
         });
@@ -48,7 +47,6 @@ $(function() {
                     $("#main_video").attr('src', data.videoUrl);
                 } else {
                     console.log('error');
-                    console.log(data);
                 }
             }
         });
@@ -56,13 +54,28 @@ $(function() {
     /*--------- end movies_by_genres ---------*/
 
     /*++++++++++++ start search ++++++++++++++*/
+    let previousVal = null;
+    let timer = null;
     $("#search").on("keyup change", function(event) {
-        let val = $(this).val();
-        if (val.length >= 2) {
+        clearTimeout(timer);
+        var self = this;
+        let val = $(self).val().trim();
+ 
+        timer = setTimeout(function () {
+            search(val, previousVal);
+            previousVal = val;
+        }, 1000);
+        
+    })
+
+
+    function search(val, previousVal)
+    {
+        if (val.length >= 2 && val !== previousVal) {
             $.ajax({
                 type: 'post',
                 url: Routing.generate('app_ajax_search_movies'),
-                data: {needle:val.trim()},
+                data: {needle:val},
                 success: function (data) {
                     if (data.isValid == 1) {
                         $("#list_search").removeClass('d-none');
@@ -70,7 +83,6 @@ $(function() {
                         $("#list_search").html(data.content);
                     } else {
                         console.log('error');
-                        console.log(data);
                     }
                 },
                 error: function () {
@@ -80,7 +92,7 @@ $(function() {
                 }
             });
         }
-    })
+    }
 
     $(document).on("click", function(event) {
         $("#search").val(null);
