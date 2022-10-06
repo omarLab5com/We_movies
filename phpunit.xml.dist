@@ -23,7 +23,8 @@
             <file>tests/Controller/MoviesControllerTest.php</file>
         </testsuite>
         <testsuite name="Service">
-            <file>tests/Service/TheMovieDBApiServiceTest.php</file>
+            <file>tests/Service/Api/TheMovieDBApiServiceTest.php</file>
+            <file>tests/Service/Video/VideoServiceTest.php</file>
         </testsuite>
     </testsuites>
 

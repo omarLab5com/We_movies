@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Service\TheMovieDBApiService;
-use App\Service\VideoService;
+use App\Service\Api\TheMovieDBApiService;
+use App\Service\Video\VideoService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,7 +50,7 @@ class MoviesController extends AbstractController
     /**
      * @Route("/ajax-movies-by-genres", name="app_ajax_movies_by_genres", options={"expose"=true}, methods={"POST"})
      */
-    public function moviesByGenres(Request $request, TheMovieDBApiService $theMovieDBApiService): Response
+    public function moviesByGenres(Request $request, TheMovieDBApiService $theMovieDBApiService, VideoService $videoService): Response
     {
         if (!$request->isXMLHttpRequest()) {
             throw new \Exception('Erreur');
@@ -66,7 +66,11 @@ class MoviesController extends AbstractController
             $video = $theMovieDBApiService->getVideosMovie($movies[0]['id']);
         }
 
-        return $this->json(['isValid' => true, 'content' => $data->getContent(), 'videoUrl' => VideoService::getURLVideo($video)], 200);
+        return $this->json([
+            'isValid' => true, 
+            'content' => $data->getContent(), 
+            'videoUrl' => $videoService->getURLVideo($video)
+        ], 200);
     }
 
     /**

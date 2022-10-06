@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
+use App\Service\Api\TheMovieDBApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Service\TheMovieDBApiService;
 
 class HomeController extends AbstractController
 {
